@@ -28,6 +28,8 @@ Sometimes, it may be appropriate for a user to create an instance of our join mo
 <% end %>
 ```
 
+
+
 In this example, a user is filling out a form, entering the date and time they'd like to come, and choosing their doctor and their name from a dropdown. We're assigning these properties directly to the appointment as it's created.
 
 Other times, we need to be more abstract. Let's return to our blog example, but this time we'll say that a post can have many categories and categories can have many posts. For this, we'll need a join table –– let's call it `post_categories`. If our user wants to associate a post with a category, it doesn't make sense for them to go to `/post_categories/new` and fill out a "new post category form." That's confusing! Let's look at a more abstract way that we can do this thanks to the magic of Active Record.
@@ -95,7 +97,7 @@ class PostsController < ApplicationController
   ...
 
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :content, category_ids:[])
   end
@@ -167,7 +169,7 @@ class PostsController < ApplicationController
   ...
 
   private
-  
+
   def post_params
     params.require(:post).permit(:title, :content, category_ids:[], categories_attributes: [:name])
   end
